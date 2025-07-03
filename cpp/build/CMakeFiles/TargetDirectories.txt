@@ -1,0 +1,4 @@
+C:/Workspace/adaptive-snapshots/cpp/build/CMakeFiles/snapshot_predictor.dir
+C:/Workspace/adaptive-snapshots/cpp/build/CMakeFiles/demo.dir
+C:/Workspace/adaptive-snapshots/cpp/build/CMakeFiles/edit_cache.dir
+C:/Workspace/adaptive-snapshots/cpp/build/CMakeFiles/rebuild_cache.dir
