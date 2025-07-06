@@ -25,4 +25,5 @@ def predict_hist(n:int, m:int, T:int, q:int):
     hist = _model.predict(v)[0]
     hist = np.clip(hist, 0, None)
     hist /= (hist.sum() + 1e-9)
+    print(f"[Python] predict_hist called with n={n}, m={m}, T={T}, q={q}")
     return hist.tolist()

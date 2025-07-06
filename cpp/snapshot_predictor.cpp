@@ -1,6 +1,7 @@
 #include "snapshot_predictor.hpp"
-#include <pybind11/embed.h>          // must add pybind11::embed to link
+#include <pybind11/embed.h>          
 #include <pybind11/stl.h>
+#include <pybind11/pybind11.h>
 #include <algorithm>
 #include <cmath>
 #include <bits/stdc++.h>
@@ -14,6 +15,20 @@ static py::object predictFunc;
 /// internal helper
 static std::vector<double> predictHist(int n,int m,int T,int q) {
     if (!predictFunc) {
+        py::module_ sys = py::module_::import("sys");
+        // Print sys.path before
+        auto path_list = sys.attr("path");
+        std::cout << "[C++] Original sys.path:\n";
+        for (auto item : path_list) std::cout << "  " << py::str(item) << "\n";
+
+        // Insert correct path
+       // sys.attr("path").attr("append")("C:/Workspace/adaptive-snapshots/ml/.venv/Lib/site-packages");
+        sys.attr("path").attr("append")("C:/Workspace/adaptive-snapshots/");
+
+        // Print again
+        std::cout << "[C++] Updated sys.path:\n";
+        for (auto item : path_list) std::cout << "  " << py::str(item) << "\n";
+
         auto mlmod = py::module_::import("ml.predict_hist");
         predictFunc = mlmod.attr("predict_hist");
     }
